@@ -104,3 +104,4 @@ void piece_chain_iter_free(PieceChainIterator_t*);
 #endif
 
 #endif
+

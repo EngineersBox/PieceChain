@@ -7,8 +7,14 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
-#include <linux/fs.h>
 #include <fcntl.h>
+#ifdef __linux__
+#include <linux/fs.h>
+#endif
+#ifdef __APPLE__
+#include <sys/disk.h>
+#define BLKGETSIZE64 DKIOCGETBLOCKSIZE
+#endif
 #include <libgen.h>
 #include <assert.h>
 
@@ -54,7 +60,7 @@ typedef struct {
     struct list_head list;
 } Revision;
 
-struct PieceChain_t {
+typedef struct PieceChain_t {
     size_t size;
     bool dirty;
 
@@ -69,7 +75,7 @@ struct PieceChain_t {
     struct list_head pending_changes; // Changes not yet attached to a revision
 
     PieceChainError_t last_error;
-};
+} PieceChain_t;
 
 struct PieceChainIterator_t {
     PieceChain_t* file;

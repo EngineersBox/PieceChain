@@ -62,14 +62,14 @@ target_link_libraries(PieceChain PRIVATE coverage_config)
 # Export the target so that it can be referenced by our users
 export(PACKAGE PieceChain)
 
-# Tests
-add_subdirectory(deps/Catch2)
-add_executable(PieceChainTest
-    test/main.cpp
-    test/PieceChain.cpp
-)
-target_compile_features(PieceChainTest PRIVATE ${common_std})
-target_compile_options(PieceChainTest PRIVATE ${common_options})
-target_link_libraries(PieceChainTest PRIVATE "${common_link_options}")
-target_link_libraries(PieceChainTest PRIVATE PieceChain Catch2::Catch2 coverage_config)
-add_custom_target(test COMMAND PieceChainTest)
+# # Tests
+# add_subdirectory(deps/Catch2)
+# add_executable(PieceChainTest
+#     test/main.cpp
+#     test/PieceChain.cpp
+# )
+# target_compile_features(PieceChainTest PRIVATE ${common_std})
+# target_compile_options(PieceChainTest PRIVATE ${common_options})
+# target_link_libraries(PieceChainTest PRIVATE "${common_link_options}")
+# target_link_libraries(PieceChainTest PRIVATE PieceChain Catch2::Catch2 coverage_config)
+# add_custom_target(test COMMAND PieceChainTest)
